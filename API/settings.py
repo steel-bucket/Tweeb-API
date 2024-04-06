@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from django.conf import settings
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,15 +86,15 @@ WSGI_APPLICATION = 'API.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
+password = os.environ.get('PASSWORD')
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'Tweets',
         'CLIENT': {
-            'host': 'mongodb+srv://22bec038:gtasavnto@tweeb-database.279e1g0.mongodb.net/',
+            'host': f'mongodb+srv://22bec038:{password}@tweeb-database.279e1g0.mongodb.net/',
             'username': '22bec038',
-            'password': 'gtasavnto',
+            'password': f'{password}',
             'authMechanism': 'SCRAM-SHA-1',
         },
     }
