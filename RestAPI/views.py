@@ -13,12 +13,12 @@ class HelloView(APIView):
         return Response(content)
 
 
-class PostAPIView(APIView):
-    # permission_classes = IsAuthenticated,
-    def get(self, request):
-        posts = Post.objects.all()
-        content = PostSerializer(posts, many=True)
-        return Response(content.data)
+# class PostAPIView(APIView):
+#     # permission_classes = IsAuthenticated,
+#     def get(self, request):
+#         posts = Post.objects.all()
+#         content = PostSerializer(posts, many=True)
+#         return Response(content.data)
 
 
 class PostBackendView(APIView):
@@ -28,7 +28,7 @@ class PostBackendView(APIView):
         sort = request.GET.get('sort')
         sortorder = request.GET.get('sortorder')
         page = int(request.GET.get('page', 1))
-        perpage = int(request.GET.get('per_page', 10))
+        perpage = int(request.GET.get('per_page', 20))
 
         posts = Post.objects.all()
 

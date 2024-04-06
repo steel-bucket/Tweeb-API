@@ -91,9 +91,9 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'Tweets',
         'CLIENT': {
-            'host': 'mongodb+srv://22bec038:□□□□□□□□□@tweeb-database.279e1g0.mongodb.net/',
+            'host': 'mongodb+srv://22bec038:gtasavnto@tweeb-database.279e1g0.mongodb.net/',
             'username': '22bec038',
-            'password': '□□□□□□□□□',
+            'password': 'gtasavnto',
             'authMechanism': 'SCRAM-SHA-1',
         },
     }
@@ -152,12 +152,13 @@ REST_FRAMEWORK = {
     #     "rest_framework_xml.renderers.XMLRenderer",
     # ]
 }
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://localhost:3000",
-    "https://127.0.0.1:3000",
-]
-# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "https://localhost:3000",
+#     "https://127.0.0.1:3000",
+#     "http://localhost:5173"
+# ]
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_METHODS = [
     "GET",
     "POST",
@@ -178,7 +179,7 @@ AUTH_USER_MODEL = 'Auth.NewUser'
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
@@ -193,7 +194,7 @@ SIMPLE_JWT = {
     "JWK_URL": None,
     "LEEWAY": 0,
 
-    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_TYPES": ("Bearer","JWT"),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",

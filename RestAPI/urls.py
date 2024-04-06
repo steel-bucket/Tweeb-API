@@ -9,6 +9,5 @@ app_name = 'blog_api'
 
 urlpatterns = [
     path('hello/', views.HelloView.as_view(), name='hello'),
-    path('posts/frontend', views.PostAPIView.as_view(), name='posts'),
     path('posts/backend', views.PostBackendView.as_view(), name='posts'),
 ]
