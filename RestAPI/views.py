@@ -1,9 +1,11 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import generics
 from .models import Post
 from .serializers import PostSerializer
 from django.db.models import Q
+
 
 class HelloView(APIView):
     permission_classes = IsAuthenticated,
@@ -13,12 +15,23 @@ class HelloView(APIView):
         return Response(content)
 
 
-# class PostAPIView(APIView):
+# class PostAPIView(generics.RetrieveAPIView):
 #     # permission_classes = IsAuthenticated,
-#     def get(self, request):
-#         posts = Post.objects.all()
-#         content = PostSerializer(posts, many=True)
-#         return Response(content.data)
+#     lookup_field = 'tlink'
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+
+from rest_framework.exceptions import NotFound
+
+
+class SinglePostView(APIView):
+    def get(self, request, tlink):
+        try:
+            post = Post.objects.get(tlink=tlink)
+            serializer = PostSerializer(post)
+            return Response(serializer.data)
+        except Post.DoesNotExist:
+            raise NotFound('Post not found')
 
 
 class PostBackendView(APIView):
